@@ -1,8 +1,8 @@
-<h1>Pages#home</h1>
+<h1>Movies#index</h1>
 
 <div class="row justify-content-center">
   <div class="col-sm-8 my-3">
-    <%= form_with url: root_path, method: :get, class: "d-flex" do %>
+    <%= form_with url: movies_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
             params[:query],
             class: "form-control",
@@ -17,17 +17,16 @@
   <div class="row justify-content-center">
     <div class="col-sm-8">
       <div id="movies">
-        <% if @collection.any? %>
-          <% @collection.each do |item| %>
-            <h4><%= item.searchable.title %></h4>
-            <p><%= item.searchable.synopsis %></p>
-            <p><%= item.searchable_type %></p>
+        <% if @movies.any? %>
+          <% @movies.each do |movie| %>
+            <h4><%= movie.title %></h4>
+            <p><%= movie.synopsis %></p>
+            <p>Directed by: <%= movie.director.first_name %> <%= movie.director.last_name %></p>
           <% end %>
         <% else %>
-          <em>Sorry, no movies or Tv shows found.</em>
+          <em>Sorry, no movies found.</em>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
